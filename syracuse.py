@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 # Les fonctions de calcul
 ####
 
-
 def transformation(nb_entree):
 	"""l'operation de base de la conjoncture de syracuse,
 
@@ -58,6 +57,41 @@ def chaine_en_serie(debut, fin):
 		liste_des_serie.append(transformation_en_chaine(i))
 	return liste_des_serie
 
+#####
+# les fonctions d'analyse
+#####
+
+def analyse_un_vol(vol):
+	"""analyse les caractéristique d'un vol
+	-attrs:
+	vol(chaine): la chaine à analyser
+	-returns:
+	analyse_totale : une liste avec les variables analysés sous forme de f-string puis valeurs bruts
+	"""
+	altitude_maximal=max(vol)
+	temps_de_vol=len(vol)
+
+	temps_de_vol_en_altitude=0
+	for i in range(0,len(vol)):
+		if vol[i]>vol[0]:
+			temps_de_vol_en_altitude+=1
+	temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
+
+	analyse_textuelle=f"temps de vol : {temps_de_vol} - altitude maximal : {altitude_maximal} - temsp de vol en atltitude : {temps_de_vol_en_altitude}"
+	analyse_totale=[analyse_textuelle, altitude_maximal, temps_de_vol, temps_de_vol_en_altitude]
+
+	return  analyse_totale
+
+def graphique_un_vol(vol):
+	b=range(1,len(vol)+1)
+	fig,ax = plt.subplots()
+	ax.plot(b,vol)
+	ax.grid()
+	ax.legend(f"graphique de vol pour le nombre {vol[0]}")
+	ax.set_xlabel('temps de vol')  # Add an x-label to the axes.
+	ax.set_ylabel('altitude')
+	plt.show()
+
 ##################
 # quelques routines pour tester/expérimenter le code - peut être supprimées plus tard
 ##################
@@ -67,13 +101,11 @@ def testerjusteunetransformation():
 	print(transformation(-17))
 
 def testertransformationenchaine():
-	a=(transformation_en_chaine(178))
+	a=(transformation_en_chaine(15))
 	print(a)
-	b=range(1,len(a)+1)
-	fig,ax = plt.subplots()
-	ax.plot(b,a)
-	ax.grid()
-	plt.show()
+	print(analyse_un_vol(a))
+	graphique_un_vol(a)
+	
 
 def testerchaineenserie():
 	b=chaine_en_serie(15,25)
@@ -119,8 +151,8 @@ def fin():
 
 def main():
 	"""pour exprimer ce qui va se passer"""
-	choixinteractif()
-
+	#choixinteractif()
+	testertransformationenchaine()
 
 if __name__ == "__main__":
 	main()
