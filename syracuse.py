@@ -87,6 +87,31 @@ def testerchaineenserie():
 	ax.legend()  # Add a legend.
 	plt.show()
 
+######
+# Visuel
+####
+
+def choixinteractif():
+	"""
+	Permet de demander à l'utilisateur ce qu'il veut faire entre plusieurs choix.
+	Cela passe par une invite "input", et les fonctions sont stockées dans un dictionnaire.
+	Cela boucle sans fin jusqu'à demander à quitter le programme
+	"""
+	user_answer="a"
+	user_answer=input("Que voulez vous faire : \n tester transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3) \n ou quitter (tapez Q ou q) \n")
+	while user_answer != "Q":
+		menu={"1":testerjusteunetransformation,"2":testertransformationenchaine, "3":testerchaineenserie, "q":fin, "Q":fin}
+		menu.get(user_answer,passer)()
+		user_answer=input("Que voulez vous faire : \n tester transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
+
+def passer():
+	"""Pour gérer les réponses non-valides"""
+	pass
+
+def fin():
+	"""Pour quitter le script"""
+	print("Merci d'avoir utilisé mon programme. A une prochaine fois.")
+	exit()
 
 ########################
 # déclancher le script
@@ -94,13 +119,10 @@ def testerchaineenserie():
 
 def main():
 	"""pour exprimer ce qui va se passer"""
-	testerchaineenserie()
+	choixinteractif()
 
 
 if __name__ == "__main__":
 	main()
 else:
 	pass
-
-
-
