@@ -58,16 +58,15 @@ def chaine_en_serie(debut, fin):
 		liste_des_serie.append(transformation_en_chaine(i))
 	return liste_des_serie
 
-########################
-# déclancher le script
-########################
+##################
+# quelques routines pour tester/expérimenter le code - peut être supprimées plus tard
+##################
 
-def main():
-	"""pour exprimer ce qui va se passer"""
-	#print(transformation(17))
-	#print(transformation(-17))
+def testerjusteunetransformation():
+	print(transformation(17))
+	print(transformation(-17))
 
-
+def testertransformationenchaine():
 	a=(transformation_en_chaine(178))
 	print(a)
 	b=range(1,len(a)+1)
@@ -76,7 +75,8 @@ def main():
 	ax.grid()
 	plt.show()
 
-	b=chaine_en_serie(1,100)
+def testerchaineenserie():
+	b=chaine_en_serie(15,25)
 	print(b)
 	fig, ax = plt.subplots()  # Create a figure and an axes.
 	for i in range(len(b)):
@@ -88,7 +88,13 @@ def main():
 	plt.show()
 
 
-	# print(chaine_en_serie(10,20))
+########################
+# déclancher le script
+########################
+
+def main():
+	"""pour exprimer ce qui va se passer"""
+	testerchaineenserie()
 
 
 if __name__ == "__main__":
