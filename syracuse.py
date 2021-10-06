@@ -27,11 +27,11 @@ def transformation(nb_entree):
 def transformation_en_chaine(nb_depart):
 	""" pour un nombre donné, cherche l'intergralité de la suite jusqu'a se fin avec 1. utilse pour cela la fonction transformation()
 
-	- attrs:
-	nb_depart(int) : le nombre a transfirmer de façon recursive
+	attrs:
+		- nb_depart(int) : le nombre a transfirmer de façon recursive
 
-	- returns:
-		liste_de_la_suite(liste) : le nombre de depart puis tous ceux issus du calcul jusqu'à 1 inclus
+	returns:
+		- liste_de_la_suite(liste) : le nombre de depart puis tous ceux issus du calcul jusqu'à 1 inclus
 
 	"""
 	nb_travail = nb_depart
@@ -44,12 +44,13 @@ def transformation_en_chaine(nb_depart):
 
 def chaine_en_serie(debut, fin):
 	""" permet de lancer la transformation en chaine pour de nombreux nombre à l'aide d'une boucle for
-	- attrs:
-	debut(int): borne inférieur de l'échantillon de calcul
-	fin(int): borne inférieur de l'échantillon dde calcul
+	
+	attrs:
+		- debut(int): borne inférieur de l'échantillon de calcul
+		- fin(int): borne inférieur de l'échantillon dde calcul
 
-	- returns:
-		liste_des série(liste) : liste de liste, comportant la série pour chaque nombre calculé
+	returns:
+		- liste_des série(liste) : liste de liste, comportant la série pour chaque nombre calculé
 
 	"""
 	liste_des_serie=[]
@@ -63,10 +64,13 @@ def chaine_en_serie(debut, fin):
 
 def analyse_un_vol(vol):
 	"""analyse les caractéristique d'un vol
-	-attrs:
-	vol(chaine): la chaine à analyser
-	-returns:
-	analyse_totale : une liste avec les variables analysés sous forme de f-string puis valeurs bruts
+	le vocabulaire est issus de la page wikipédia
+	
+	attrs:
+		- vol(chaine): la chaine à analyser
+	
+	returns:
+		- analyse_totale : une liste avec les variables analysés sous forme de f-string puis valeurs bruts
 	"""
 	altitude_maximal=max(vol)
 	temps_de_vol=len(vol)
@@ -83,6 +87,15 @@ def analyse_un_vol(vol):
 	return  analyse_totale
 
 def graphique_un_vol(vol):
+	"""Fonction servant à afficher un graphique du vol pour 1 seul nombre
+	
+	attrs :
+		- vol(liste): liste de chiffre, typiquement issus du calcul 
+
+	returns:
+		- pas de valeur, se contente d'afficher le graphique
+	"""
+
 	b=range(1,len(vol)+1)
 	fig,ax = plt.subplots()
 	ax.plot(b,vol)
@@ -91,6 +104,55 @@ def graphique_un_vol(vol):
 	ax.set_xlabel('temps de vol')  # Add an x-label to the axes.
 	ax.set_ylabel('altitude')
 	plt.show()
+
+def analyse_multi_vol(liste_de_vol):
+	#liste des altitudes, liste des temps de vol
+	liste_altitudes=[]
+	liste_temps_vol=[]
+	for i in range(0,len(liste_de_vol)):
+		liste_altitudes.append(max(liste_de_vol[i]))	
+		liste_temps_vol.append(len(liste_de_vol[i]))
+	#liste des vol en altitutes
+	liste_vol_en_altitude=[]
+	for i in range(0,len(liste_de_vol)):
+		temps_de_vol_en_altitude=0
+		for j in range(0,len(liste_de_vol)):
+			if liste_de_vol[i][j]>liste_de_vol[i][0]:
+				temps_de_vol_en_altitude+=1
+		#temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
+		#WARNING erreur sur ce calcul
+		liste_vol_en_altitude.append(temps_de_vol_en_altitude)
+	#analyse par chiffre et analyse textuelle par chiffre
+	analyse_par_chiffre=[]
+	liste_analyse_textuelle=[]
+	for i in range(0,len(liste_de_vol)):
+		analyse_par_chiffre.append([liste_de_vol[i][0],liste_altitudes[i], liste_temps_vol[i], liste_vol_en_altitude[i]])
+		print(analyse_par_chiffre)
+		phrase=f"pour le nombre {analyse_par_chiffre[i][0]}, l'altitide max est {analyse_par_chiffre[i][1]}, le temps de vol est {analyse_par_chiffre[i][2]} et le vol en altitude vaut {analyse_par_chiffre[i][3]}"
+		liste_analyse_textuelle.append(phrase)
+	return analyse_par_chiffre, liste_analyse_textuelle
+	#plus grande altitude, temps de vol, vol en altitude
+	
+
+
+def graphique_multi_vol(liste_de_vol):
+	"""Fonction servant à afficher un graphique du vol pour plusieurs nombres
+	
+	attrs :
+		- vol(liste): liste de liste de chiffre, typiquement issus du calcul 
+
+	returns:
+		- pas de valeur, se contente d'afficher le graphique
+	"""
+	fig, ax = plt.subplots()  # Create a figure and an axes.
+	for i in range(len(liste_de_vol)):
+		ax.plot(liste_de_vol[i], label=str(i))  # Plot some data on the axes.
+	ax.set_xlabel('x label')  # Add an x-label to the axes.
+	ax.set_ylabel('y label')  # Add a y-label to the axes.
+	ax.set_title("Simple Plot")  # Add a title to the axes.
+	ax.legend()  # Add a legend.
+	plt.show()
+
 
 ##################
 # quelques routines pour tester/expérimenter le code - peut être supprimées plus tard
@@ -108,16 +170,12 @@ def testertransformationenchaine():
 	
 
 def testerchaineenserie():
-	b=chaine_en_serie(15,25)
+	b=chaine_en_serie(15,17)
 	print(b)
-	fig, ax = plt.subplots()  # Create a figure and an axes.
-	for i in range(len(b)):
-		ax.plot(b[i], label=str(i))  # Plot some data on the axes.
-	ax.set_xlabel('x label')  # Add an x-label to the axes.
-	ax.set_ylabel('y label')  # Add a y-label to the axes.
-	ax.set_title("Simple Plot")  # Add a title to the axes.
-	ax.legend()  # Add a legend.
-	plt.show()
+	print(analyse_multi_vol(b))
+	graphique_multi_vol(b)
+
+	
 
 ######
 # Visuel
@@ -152,7 +210,7 @@ def fin():
 def main():
 	"""pour exprimer ce qui va se passer"""
 	#choixinteractif()
-	testertransformationenchaine()
+	testerchaineenserie()
 
 if __name__ == "__main__":
 	main()
