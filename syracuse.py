@@ -122,6 +122,7 @@ def graphique_un_vol(vol):
     ax.set_ylabel('altitude')
     plt.show()
 
+
 def analyse_multi_vol(liste_de_vol):
     # liste des altitudes, liste des temps de vol
     liste_altitudes = []
@@ -221,14 +222,31 @@ def fin():
     print("Merci d'avoir utilisé mon programme. A une prochaine fois.")
     exit()
 
+def demandenombre():
+    """demande un nombre entier pour faire son analyse.
+    Attention, si les float, str... ne sont pas accepté, les entiers négatif passent !
+    args : 
+        - aucune
+    returns : 
+        - nombre(integer)
+    """
+    nombre = input("Veuillez entrer un nombre entier positif")
+    while nombre != int or nombre < 0 :
+        try :
+            nombre = int(nombre)
+            return nombre
+        except :
+            nombre = input("Veuillez entrer un nombre entier positif")
+
 ########################
 # déclancher le script
 ########################
 
 def main():
     """pour exprimer ce qui va se passer"""
-    choixinteractif()
+    #choixinteractif()
     #testerchaineenserie()
+    demandenombre()
 
 if __name__ == "__main__":
     main()
