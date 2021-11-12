@@ -35,6 +35,7 @@ def transformation(nb_entree):
 
 def transformation_en_chaine(nb_depart):
     """ pour un nombre donné, cherche l'intégralité de la suite jusqu'à la fin avec 1. Utilise pour cela la fonction transformation()
+    source pour les valeurs test : wikipédia
 
     attrs:
         - nb_depart(int) : le nombre à transformer de façon récursive
@@ -71,6 +72,7 @@ def chaine_en_serie(debut, fin):
         liste_des_serie.append(transformation_en_chaine(i))
     return liste_des_serie
 
+
 #####
 # les fonctions d'analyse
 #####
@@ -84,6 +86,8 @@ def analyse_un_vol(vol):
 
     returns:
         - analyse_totale : une liste avec les variables analysés sous forme de f-string puis valeurs bruts
+    >>> analyse_un_vol([15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1])
+    ['temps de vol : 18 - altitude maximale : 160 - temps de vol en altitude : 10', 160, 18, 10]
     """
     altitude_maximal = max(vol)
     temps_de_vol = len(vol)
@@ -177,8 +181,9 @@ def testerjusteunetransformation():
     print(transformation(17))
     print(transformation(-17))
 
+
 def testertransformationenchaine():
-    a=(transformation_en_chaine(127))
+    a=(transformation_en_chaine(15))
     print(a)
     print(analyse_un_vol(a))
     graphique_un_vol(a)
