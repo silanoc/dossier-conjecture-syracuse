@@ -15,6 +15,11 @@ def transformation(nb_entree):
 
 	returns:
 		- nb_sortie(int) : le nombre issu de la transformation
+
+	>>> transformation(8)
+	4
+	>>> transformation(9)
+	22	
 	"""
 	if nb_entree % 2 == 0:
 		# comme c'est un nombre pair que l'on divise permet d'eviter d'avoir un float
@@ -78,10 +83,10 @@ def analyse_un_vol(vol):
 	temps_de_vol_en_altitude = 0
 	for i in range(0,len(vol)):
 		if vol[i] > vol[0]:
-			temps_de_vol_en_altitude += 1
-	temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia0
-	analyse_textuelle=f"temps de vol : {temps_de_vol} - altitude maximale : {altitude_maximal} - temps de vol en atltitude : {temps_de_vol_en_altitude}"
-	analyse_totale=[analyse_textuelle, altitude_maximal, temps_de_vol, temps_de_vol_en_altitude]
+			temps_de_vol_en_altitude+=1
+	temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
+	analyse_textuelle = f"temps de vol : {temps_de_vol} - altitude maximale : {altitude_maximal} - temps de vol en atltitude : {temps_de_vol_en_altitude}"
+	analyse_totale = [analyse_textuelle, altitude_maximal, temps_de_vol, temps_de_vol_en_altitude]
 	return  analyse_totale
 
 def graphique_un_vol(vol):
