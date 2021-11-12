@@ -15,6 +15,10 @@ def transformation(nb_entree):
 
     returns:
         - nb_sortie(int) : le nombre issu de la transformation
+    >>> transformation(8)
+    4
+    >>> transformation(9)
+    28
     """
     if nb_entree % 2 == 0:
         # comme c'est un nombre pair que l'on divise permet d'eviter d'avoir un float
