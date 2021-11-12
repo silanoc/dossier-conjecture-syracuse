@@ -15,17 +15,12 @@ def transformation(nb_entree):
 
 	returns:
 		- nb_sortie(int) : le nombre issu de la transformation
-
-	>>> transformation(8)
-	4
-	>>> transformation(9)
-	22	
 	"""
 	if nb_entree % 2 == 0:
 		# comme c'est un nombre pair que l'on divise permet d'eviter d'avoir un float
-		nb_sortie = int(nb_entree / 2)
+		nb_sortie = int(nb_entree/2)
 	else:
-		nb_sortie = nb_entree * 3 + 1
+		nb_sortie = nb_entree*3+1
 	return nb_sortie
 
 
@@ -58,11 +53,10 @@ def chaine_en_serie(debut, fin):
 		- liste_des série(liste) : liste de liste, comportant la série pour chaque nombre calculé
 
 	"""
-	liste_des_serie=[]
-	for i in range (debut,fin + 1):
+	liste_des_serie = []
+	for i in range (debut,fin+1):
 		liste_des_serie.append(transformation_en_chaine(i))
 	return liste_des_serie
-
 
 #####
 # les fonctions d'analyse
@@ -80,13 +74,16 @@ def analyse_un_vol(vol):
 	"""
 	altitude_maximal = max(vol)
 	temps_de_vol = len(vol)
+
 	temps_de_vol_en_altitude = 0
 	for i in range(0,len(vol)):
 		if vol[i] > vol[0]:
 			temps_de_vol_en_altitude+=1
-	temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
-	analyse_textuelle = f"temps de vol : {temps_de_vol} - altitude maximale : {altitude_maximal} - temps de vol en atltitude : {temps_de_vol_en_altitude}"
-	analyse_totale = [analyse_textuelle, altitude_maximal, temps_de_vol, temps_de_vol_en_altitude]
+	temps_de_vol_en_altitude -= 1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
+
+	analyse_textuelle=f"temps de vol : {temps_de_vol} - altitude maximale : {altitude_maximal} - temps de vol en atltitude : {temps_de_vol_en_altitude}"
+	analyse_totale=[analyse_textuelle, altitude_maximal, temps_de_vol, temps_de_vol_en_altitude]
+
 	return  analyse_totale
 
 def graphique_un_vol(vol):
@@ -98,7 +95,8 @@ def graphique_un_vol(vol):
 	returns:
 		- pas de valeur, se contente d'afficher le graphique
 	"""
-	b=range(1,len(vol) + 1)
+
+	b=range(1,len(vol)+1)
 	fig,ax = plt.subplots()
 	ax.plot(b,vol)
 	ax.grid()
@@ -106,7 +104,6 @@ def graphique_un_vol(vol):
 	ax.set_xlabel('temps de vol')  # Add an x-label to the axes.
 	ax.set_ylabel('altitude')
 	plt.show()
-
 
 def analyse_multi_vol(liste_de_vol):
 	#liste des altitudes, liste des temps de vol
@@ -118,9 +115,9 @@ def analyse_multi_vol(liste_de_vol):
 	#liste des vols en altitute
 	liste_vol_en_altitude = []
 	for i in range(0,len(liste_de_vol)):
-		temps_de_vol_en_altitude = 0
+		temps_de_vol_en_altitude=0
 		for j in range(0,len(liste_de_vol)):
-			if liste_de_vol[i][j]>liste_de_vol[i][0]:
+			if liste_de_vol[i][j] > liste_de_vol[i][0]:
 				temps_de_vol_en_altitude += 1
 		#temps_de_vol_en_altitude-=1 #je comprends pas pq, mais permet de retomber sur l'exemple de wikipedia
 		#WARNING erreur sur ce calcul. Ca fonctionne très bien sur un seul nombre, mais pas sur une série !
@@ -133,11 +130,12 @@ def analyse_multi_vol(liste_de_vol):
 		print(analyse_par_chiffre)
 		# phrase supprimé en attendatn la correction
 		# phrase=f"pour le nombre {analyse_par_chiffre[i][0]}, l'altitude maximale est {analyse_par_chiffre[i][1]}, le temps de vol est {analyse_par_chiffre[i][2]} et le vol en altitude vaut {analyse_par_chiffre[i][3]}"
-		phrase = f"pour le nombre {analyse_par_chiffre[i][0]}, l'altitude maximale est {analyse_par_chiffre[i][1]}, le temps de vol est {analyse_par_chiffre[i][2]}"
+		phrase=f"pour le nombre {analyse_par_chiffre[i][0]}, l'altitude maximale est {analyse_par_chiffre[i][1]}, le temps de vol est {analyse_par_chiffre[i][2]}"
 		liste_analyse_textuelle.append(phrase)
 	return analyse_par_chiffre, liste_analyse_textuelle
 	#plus grande altitude, temps de vol, vol en altitude
 	
+
 
 def graphique_multi_vol(liste_de_vol):
 	"""Fonction servant à afficher un graphique du vol pour plusieurs nombres
@@ -150,7 +148,7 @@ def graphique_multi_vol(liste_de_vol):
 	"""
 	fig, ax = plt.subplots()  # Create a figure and an axes.
 	for i in range(len(liste_de_vol)):
-		ax.plot(liste_de_vol[i], label = str(i))  # Plot some data on the axes.
+		ax.plot(liste_de_vol[i], label=str(i))  # Plot some data on the axes.
 	ax.set_xlabel('temps de vol')  # Add an x-label to the axes.
 	ax.set_ylabel('altitude')  # Add a y-label to the axes.
 	ax.set_title("graphique de vol pour une plage de  nombre")  # Add a title to the axes.
@@ -167,20 +165,20 @@ def testerjusteunetransformation():
 	print(transformation(17))
 	print(transformation(-17))
 
-
 def testertransformationenchaine():
-	a = (transformation_en_chaine(127))
+	a=(transformation_en_chaine(127))
 	print(a)
 	print(analyse_un_vol(a))
 	graphique_un_vol(a)
 	
 
 def testerchaineenserie():
-	b = chaine_en_serie(15,17)
+	b=chaine_en_serie(15,17)
 	print(b)
 	print(analyse_multi_vol(b))
 	graphique_multi_vol(b)
 
+	
 
 ######
 # Visuel
@@ -197,13 +195,11 @@ def choixinteractif():
 	while user_answer != "Q":
 		menu = {"1":testerjusteunetransformation,"2":testertransformationenchaine, "3":testerchaineenserie, "q":fin, "Q":fin}
 		menu.get(user_answer,passer)()
-		user_answer = input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
-
+		user_answer=input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
 
 def passer():
 	"""Pour gérer les réponses non-valides"""
 	pass
-
 
 def fin():
 	"""Pour quitter le script"""
@@ -218,7 +214,6 @@ def main():
 	"""pour exprimer ce qui va se passer"""
 	choixinteractif()
 	#testerchaineenserie()
-
 
 if __name__ == "__main__":
 	main()
