@@ -179,18 +179,22 @@ def graphique_multi_vol(liste_de_vol):
 ##################
 
 def testerjusteunetransformation():
-    print(transformation(17))
-    print(transformation(-17))
+    nombreatester=demandenombre()
+    print(transformation(nombreatester))
 
 
 def testertransformationenchaine():
-    a=(transformation_en_chaine(15))
+    nombreatester=demandenombre()
+    a=(transformation_en_chaine(nombreatester))
     print(a)
     print(analyse_un_vol(a))
     graphique_un_vol(a)
     
 
 def testerchaineenserie():
+    print("entrer deux nombre entier positif croissant")
+    #nombreatester1=demandenombre()
+    #nombreatester2=demandenombre()
     b=chaine_en_serie(15,17)
     print(b)
     print(analyse_multi_vol(b))
@@ -230,13 +234,13 @@ def demandenombre():
     returns : 
         - nombre(integer)
     """
-    nombre = input("Veuillez entrer un nombre entier positif")
+    nombre = input("Veuillez entrer un nombre entier positif \n")
     while nombre != int or nombre < 0 :
         try :
             nombre = int(nombre)
             return nombre
         except :
-            nombre = input("Veuillez entrer un nombre entier positif")
+            nombre = input("Veuillez entrer un nombre entier positif \n")
 
 ########################
 # déclancher le script
@@ -244,9 +248,8 @@ def demandenombre():
 
 def main():
     """pour exprimer ce qui va se passer"""
-    #choixinteractif()
+    choixinteractif()
     #testerchaineenserie()
-    demandenombre()
 
 if __name__ == "__main__":
     main()
