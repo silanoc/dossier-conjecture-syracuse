@@ -1,6 +1,11 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+
+"""
+Super programme de test de la conjecture de syracuse. S'utilise qu'en mode console pour le moment
+"""
+
 import matplotlib.pyplot as plt
 
 ####
@@ -36,7 +41,10 @@ def transformation_en_chaine(nb_depart):
 
     returns:
         - liste_de_la_suite(liste) : le nombre de départ puis tous ceux issus du calcul jusqu'à 1 inclus
-
+    >>> transformation_en_chaine(14)
+    [14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+    >>> transformation_en_chaine(15)
+    [15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
     """
     nb_travail = nb_depart
     liste_de_la_suite = [nb_depart]
@@ -55,7 +63,8 @@ def chaine_en_serie(debut, fin):
 
     returns:
         - liste_des série(liste) : liste de liste, comportant la série pour chaque nombre calculé
-
+    >>> chaine_en_serie(14,15)
+    [[14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1], [15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]]
     """
     liste_des_serie = []
     for i in range(debut, fin+1):
