@@ -174,16 +174,28 @@ def graphique_multi_vol(liste_de_vol):
 
 
 ##################
-# quelques routines pour tester/expérimenter le code - peut être supprimé plus tard
+# quelques routines pour tester/expérimenter le code
 # pour le moment elle sont utilisé par l'interface textuelle
 ##################
 
 def testerjusteunetransformation():
+    """ fait l'opération de base sur un nombre rentré au clavier.
+    
+    attribut :
+        - aucun
+        - demande un nombre au claiver
+    
+    return : 
+        - aucun 
+        - print un entier
+    """
     nombreatester=demandenombre()
     print(transformation(nombreatester))
 
 
 def testertransformationenchaine():
+    """ fait la totalité des calculs pour un nombre rentré au clavier.
+    Pour ce nombre, fait l'analyse et print, trace le graphique de vol"""
     nombreatester=demandenombre()
     a=(transformation_en_chaine(nombreatester))
     print(a)
@@ -192,17 +204,20 @@ def testertransformationenchaine():
     
 
 def testerchaineenserie():
+    """ fait la totalité des calculs pour une série de nombre consécutif dont les bornes sont rentrées au clavier.
+    Pour ces nombres, fait l'analyse et print, trace le graphique de vol"""
     print("entrer deux nombre entier positif croissant")
-    #nombreatester1=demandenombre()
-    #nombreatester2=demandenombre()
-    b=chaine_en_serie(15,17)
-    print(b)
-    print(analyse_multi_vol(b))
+    nombreatester1=demandenombre()
+    nombreatester2=demandenombre()
+    #b=chaine_en_serie(15,17)
+    b=chaine_en_serie(nombreatester1,nombreatester2)
+    #print(b)
+    #print(analyse_multi_vol(b)) #génrer une ereuur "list index out of range"
     graphique_multi_vol(b)
 
 ######
 # Visuel
-####
+######
 
 def choixinteractif():
     """
@@ -249,7 +264,6 @@ def demandenombre():
 def main():
     """pour exprimer ce qui va se passer"""
     choixinteractif()
-    #testerchaineenserie()
 
 if __name__ == "__main__":
     main()
