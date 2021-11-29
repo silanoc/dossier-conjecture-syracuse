@@ -13,3 +13,9 @@ image générée en 2014 avec squeak. Il s'agit des courbes de vol pour différe
 Code en python permettant d'afficher des courbes de vol pour un ou plusieurs nombres.
 Auto-exercice pour améliorer mes compétences plus qu'autre choses. Première utilisation des doctests...
 Il reste des erreurs à corriger, mais elles sont signalées et rendues invisibles par non-utilisation de ces parties.
+### scratch
+Petit script pour montrer (si nécessaire) que scratch/mblock peut servir à faire de maths.
+- Nbenfolie.mblock : fichier pour mblock/scratch
+- nbenfolie_1.png : copie écran au format png du code. 
+Demande un chiffre en entrée, puis affiche 1 à 1 les nombres de la série. Analyse en indicants l'altitude max et le temsp de vol.
+A faire : garder les nombre dans un tableau, plusieurs chiffres, graphiques....
