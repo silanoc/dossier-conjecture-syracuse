@@ -3,8 +3,16 @@
 
 
 """
-Super programme de test de la conjecture de syracuse. S'utilise qu'en mode console pour le moment
+Programme de calcul selon la conjecture de syracuse. Il ne s'utilise qu'en mode console pour le moment.
+On a plusieurs choix sur le type de calcul à faire. Des statistiques et courbe sont associées aux calcul.
+Auteur : Silanoc
+Dernière mise à jour majeure : 29 novembre 2021
+rappel : pour tester les doctest : python3 -m doctest -v syracuse.py
 """
+
+####
+# bibliothèque / Dépendences
+####
 
 import matplotlib.pyplot as plt
 
@@ -13,7 +21,7 @@ import matplotlib.pyplot as plt
 ####
 
 def transformation(nb_entree):
-    """l'opération de base de la conjoncture de syracuse,
+    """l'opération de base de la conjoncture de syracuse si le nombre est pair ou impaire
 
     attrs:
         - nb_entree(int) : le nombre à calculer
@@ -82,10 +90,10 @@ def analyse_un_vol(vol):
     le vocabulaire est issus de la page wikipédia.
 
     attrs:
-        - vol(chaine): la chaine à analyser
+        - vol(chaine): la chaine à analyser, c'est à dire une liste d'entier. Elle est typiquement issue de transformation_en_chaine()
 
     returns:
-        - analyse_totale : une liste avec les variables analysés sous forme de f-string puis valeurs bruts
+        - analyse_totale : une liste avec les variables analysés sous forme de f-string puis les valeurs brutes
     >>> analyse_un_vol([15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1])
     ['temps de vol : 18 - altitude maximale : 160 - temps de vol en altitude : 10', 160, 18, 10]
     """
@@ -104,10 +112,10 @@ def analyse_un_vol(vol):
     return analyse_totale
 
 def graphique_un_vol(vol):
-    """Fonction servant à afficher un graphique du vol pour 1 seul nombre
+    """Fonction servant à afficher un graphique du vol pour 1 seul nombre.
 
     attrs :
-        - vol(liste): liste de chiffre, typiquement issus du calcul 
+        - vol(liste): la chaine à analyser, c'est à dire une liste d'entier. Elle est typiquement issue de transformation_en_chaine() 
 
     returns:
         - pas de valeur, se contente d'afficher le graphique
@@ -124,6 +132,18 @@ def graphique_un_vol(vol):
 
 
 def analyse_multi_vol(liste_de_vol):
+    """analyse les caractéristiques de plusieurs vol.
+    Todo : trouver pourquoi elle ne fonctionne pas !
+
+    attrs:
+        - vol(chaine): la chaine à analyser, c'est à dire une liste de liste d'entier. liste issue de chaine_en_serie()
+
+    returns:
+        - analyse_totale : une liste avec les variables analysés sous forme de f-string puis les valeurs brutes
+    >>> analyse_multi_vol([14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1], [15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1])
+    'ne fonctionne pas'
+    """
+
     # liste des altitudes, liste des temps de vol
     liste_altitudes = []
     liste_temps_vol = []
@@ -205,14 +225,16 @@ def testertransformationenchaine():
 
 def testerchaineenserie():
     """ fait la totalité des calculs pour une série de nombre consécutif dont les bornes sont rentrées au clavier.
-    Pour ces nombres, fait l'analyse et print, trace le graphique de vol"""
+    Pour ces nombres, fait l'analyse et print, trace le graphique de vol
+    Todo : génére des erreurs
+    """
     print("entrer deux nombre entier positif croissant")
     nombreatester1=demandenombre()
     nombreatester2=demandenombre()
     #b=chaine_en_serie(15,17)
     b=chaine_en_serie(nombreatester1,nombreatester2)
     #print(b)
-    #print(analyse_multi_vol(b)) #génrer une ereuur "list index out of range"
+    #print(analyse_multi_vol(b)) #générer une ereuur "list index out of range"
     graphique_multi_vol(b)
 
 ######
@@ -243,7 +265,7 @@ def fin():
 
 def demandenombre():
     """demande un nombre entier pour faire son analyse.
-    Attention, si les float, str... ne sont pas accepté, les entiers négatif passent !
+    Todo : Attention, si les float, str... ne sont pas accepté, les entiers négatif passent !
     args : 
         - aucune
     returns : 
