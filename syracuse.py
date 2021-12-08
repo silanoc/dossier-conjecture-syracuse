@@ -70,6 +70,8 @@ class Nombre_etudie():
             self.liste_de_la_suite.append(self.nb_travail)
         return self.liste_de_la_suite
 
+#ligne utile pour tester
+
 class Gestion_affichage():
     def __init__(self):
         self.intro()
