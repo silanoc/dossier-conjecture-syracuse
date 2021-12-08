@@ -16,7 +16,7 @@ Ceci est la transformation de méthodes à objets
 # bibliothèque / Dépendences
 ####
 
-#import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 ####
 # Les objets
@@ -49,7 +49,7 @@ class Nombre_etudie():
         return nb_sortie
 
 
-    def transformation_en_chaine(self,nb_depart):
+    def transformation_en_chaine(self, nb_depart):
         """ pour un nombre donné, cherche l'intégralité de la suite jusqu'à la fin avec 1. Utilise pour cela la fonction transformation()
         source pour les valeurs test : wikipédia
 
@@ -63,15 +63,42 @@ class Nombre_etudie():
         >>> transformation_en_chaine(15)
         [15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
         """
-        nb_travail = nb_depart
+        self.nb_travail = nb_depart
         self.liste_de_la_suite = [nb_depart]
-        while nb_travail > 1:
-            nb_travail = self.transformation(nb_travail)
-            self.liste_de_la_suite.append(nb_travail)
+        while self.nb_travail > 1:
+            self.nb_travail = self.transformation(self.nb_travail)
+            self.liste_de_la_suite.append(self.nb_travail)
         return self.liste_de_la_suite
 
+class Gestion_affichage():
+    def __init__(self):
+        self.intro()
+    
+    def intro(self):
+        """a l'ouverture du programme"""
+        print("bienvenue")
 
+    def fin(self):
+        """Pour quitter le script"""
+        print("Merci d'avoir utilisé mon programme. A une prochaine fois.")
+        exit()
 
+    def choixinteractif(self):
+            """
+            Permet de demander à l'utilisateur ce qu'il veut faire entre plusieurs choix.
+            Cela passe par une invite "input", et les fonctions sont stockées dans un dictionnaire.
+            Cela boucle sans fin jusqu'à demander à quitter le programme
+            """
+            user_answer = "a"
+            user_answer = input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3) \n ou quitter (tapez Q ou q) \n")
+            while user_answer != "Q":
+                menu = {"1":testerjusteunetransformation,"2":testertransformationenchaine, "3":testerchaineenserie, "q":fin, "Q":fin}
+                menu.get(user_answer,passer)()
+                user_answer=input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
+
+    def passer(self):
+        """Pour gérer les réponses non-valides"""
+        pass
 
 class Vrac():
     def chaine_en_serie(debut, fin):
@@ -252,27 +279,9 @@ class Vrac():
     # Visuel
     ######
 
-    def choixinteractif():
-        """
-        Permet de demander à l'utilisateur ce qu'il veut faire entre plusieurs choix.
-        Cela passe par une invite "input", et les fonctions sont stockées dans un dictionnaire.
-        Cela boucle sans fin jusqu'à demander à quitter le programme
-        """
-        user_answer = "a"
-        user_answer = input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3) \n ou quitter (tapez Q ou q) \n")
-        while user_answer != "Q":
-            menu = {"1":testerjusteunetransformation,"2":testertransformationenchaine, "3":testerchaineenserie, "q":fin, "Q":fin}
-            menu.get(user_answer,passer)()
-            user_answer=input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
+    
 
-    def passer():
-        """Pour gérer les réponses non-valides"""
-        pass
-
-    def fin():
-        """Pour quitter le script"""
-        print("Merci d'avoir utilisé mon programme. A une prochaine fois.")
-        exit()
+    
 
     def demandenombre():
         """demande un nombre entier pour faire son analyse.
@@ -296,6 +305,7 @@ class Vrac():
 
 def main():
     """pour exprimer ce qui va se passer"""
+    affiche=Gestion_affichage()
     Nb=Nombre_etudie(15)
     print(Nb.valeur_du_nombre)
     Nb.transformation_en_chaine(Nb.valeur_du_nombre)
