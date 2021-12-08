@@ -19,7 +19,7 @@ Ceci est la transformation de méthodes à objets
 # import matplotlib.pyplot as plt
 
 ####
-# Les objets
+# Modèle et calcul
 ####
 
 class Nombre_etudie():
@@ -69,6 +69,10 @@ class Nombre_etudie():
             self.nb_travail = self.transformation(self.nb_travail)
             self.liste_de_la_suite.append(self.nb_travail)
         return self.liste_de_la_suite
+
+######
+# Visuel et commande
+######
 
 class Gestion_affichage():
     def __init__(self):
@@ -139,10 +143,10 @@ class Gestion_affichage():
         #print(analyse_multi_vol(b)) #générer une ereuur "list index out of range"
         #graphique_multi_vol(b)
 
-
     def passer(self):
         """Pour gérer les réponses non-valides"""
         pass
+
 
 class Vrac():
     def chaine_en_serie(debut, fin):
@@ -274,42 +278,7 @@ class Vrac():
         ax.legend("graphique de vol pour une plage de  nombre")  # Add a legend.
         plt.show()
 
-
-    ##################
-    # quelques routines pour tester/expérimenter le code
-    # pour le moment elle sont utilisé par l'interface textuelle
-    ##################
-
-    def testerjusteunetransformation():
-        """ fait l'opération de base sur un nombre rentré au clavier.
-        
-        attribut :
-            - aucun
-            - demande un nombre au claiver
-        
-        return : 
-            - aucun 
-            - print un entier
-        """
-        nombreatester=demandenombre()
-        print(transformation(nombreatester))
-
-
-
-        
-
     
-
-    ######
-    # Visuel
-    ######
-
-    
-
-    
-
-    
-
 ########################
 # déclancher le script
 ########################
