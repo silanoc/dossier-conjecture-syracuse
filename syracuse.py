@@ -117,7 +117,8 @@ class Gestion_affichage():
         """ fait la totalité des calculs pour un nombre rentré au clavier.
         Pour ce nombre, fait l'analyse et print, trace le graphique de vol"""
         self.nombreatester = self.demandenombre()
-        a = (Nombre_etudie.transformation_en_chaine(self.nombreatester))
+        lenombreatransformer = Nombre_etudie(self.nombreatester)
+        a = (lenombreatransformer.transformation_en_chaine(self.nombreatester))
         print(a)
         #print(analyse_un_vol(a))
         #graphique_un_vol(a)
@@ -128,10 +129,12 @@ class Gestion_affichage():
         Todo : génére des erreurs
         """
         print("entrer deux nombre entier positif croissant")
-        nombreatester1 = self.demandenombre()
-        nombreatester2 = self.demandenombre()
+        self.nombreatester1 = self.demandenombre()
+        self.nombreatester2 = self.demandenombre()
+        lenombreatransformer1 = Nombre_etudie(self.nombreatester1)
+        lenombreatransformer2 = Nombre_etudie(self.nombreatester2)
         #b=chaine_en_serie(15,17)
-        b = Nombre_etudie.chaine_en_serie(nombreatester1,nombreatester2)
+        b = Nombre_etudie.chaine_en_serie(lenombreatransformer1,lenombreatransformer2)
         #print(b)
         #print(analyse_multi_vol(b)) #générer une ereuur "list index out of range"
         #graphique_multi_vol(b)
@@ -313,11 +316,13 @@ class Vrac():
 
 def main():
     """pour exprimer ce qui va se passer"""
-    affiche=Gestion_affichage()
-    Nb=Nombre_etudie(15)
-    print(Nb.valeur_du_nombre)
-    Nb.transformation_en_chaine(Nb.valeur_du_nombre)
-    print(Nb.liste_de_la_suite)
+    affiche = Gestion_affichage()
+    
+    
+    """ nb = Nombre_etudie(15)
+    print(nb.valeur_du_nombre)
+    nb.transformation_en_chaine(nb.valeur_du_nombre)
+    print(nb.liste_de_la_suite) """
 
 if __name__ == "__main__":
     main()
