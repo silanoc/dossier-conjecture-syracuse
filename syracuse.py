@@ -24,8 +24,8 @@ Ceci est la transformation de méthodes à objets
 
 class Nombre_etudie():
     def __init__(self,valeur):
-        self.valeur_du_nombre=valeur
-        self.liste_de_la_suite=[]
+        self.valeur_du_nombre = valeur
+        self.liste_de_la_suite = []
         pass
 
     def transformation(self,nb_entree):
@@ -70,8 +70,6 @@ class Nombre_etudie():
             self.liste_de_la_suite.append(self.nb_travail)
         return self.liste_de_la_suite
 
-#ligne utile pour tester
-
 class Gestion_affichage():
     def __init__(self):
         self.intro()
@@ -79,6 +77,7 @@ class Gestion_affichage():
     def intro(self):
         """a l'ouverture du programme"""
         print("bienvenue")
+        self.choixinteractif()
 
     def fin(self):
         """Pour quitter le script"""
@@ -92,11 +91,51 @@ class Gestion_affichage():
             Cela boucle sans fin jusqu'à demander à quitter le programme
             """
             user_answer = "a"
-            user_answer = input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3) \n ou quitter (tapez Q ou q) \n")
+            user_answer = input("Que voulez vous faire :  \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3) \n ou quitter (tapez Q ou q) \n")
             while user_answer != "Q":
-                menu = {"1":testerjusteunetransformation,"2":testertransformationenchaine, "3":testerchaineenserie, "q":fin, "Q":fin}
-                menu.get(user_answer,passer)()
-                user_answer=input("Que voulez vous faire : \n la transformation d'un nombre (tapez 1) \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
+                menu = {"2":self.faire_transformationenchaine, "3":self.faire_chaineenserie, "q":self.fin, "Q":self.fin}
+                menu.get(user_answer,self.passer)()
+                user_answer=input("Que voulez vous faire : \n toute la transformation d'un nombre (tapez 2)\n transformations pour une plage de nombre (tapez 3)\n ou quitter (tapez Q ou q) \n")
+
+    def demandenombre(self):
+        """demande un nombre entier pour faire son analyse.
+        Todo : Attention, si les float, str... ne sont pas accepté, les entiers négatif passent !
+        args : 
+            - aucune
+        returns : 
+            - nombre(integer)
+        """
+        nombre = input("Veuillez entrer un nombre entier positif \n")
+        while nombre != int or nombre < 0 :
+            try :
+                nombre = int(nombre)
+                return nombre
+            except :
+                nombre = input("Veuillez entrer un nombre entier positif \n")
+
+    def faire_transformationenchaine(self):
+        """ fait la totalité des calculs pour un nombre rentré au clavier.
+        Pour ce nombre, fait l'analyse et print, trace le graphique de vol"""
+        self.nombreatester = self.demandenombre()
+        a = (Nombre_etudie.transformation_en_chaine(self.nombreatester))
+        print(a)
+        #print(analyse_un_vol(a))
+        #graphique_un_vol(a)
+    
+    def faire_chaineenserie(self):
+        """ fait la totalité des calculs pour une série de nombre consécutif dont les bornes sont rentrées au clavier.
+        Pour ces nombres, fait l'analyse et print, trace le graphique de vol
+        Todo : génére des erreurs
+        """
+        print("entrer deux nombre entier positif croissant")
+        nombreatester1 = self.demandenombre()
+        nombreatester2 = self.demandenombre()
+        #b=chaine_en_serie(15,17)
+        b = Nombre_etudie.chaine_en_serie(nombreatester1,nombreatester2)
+        #print(b)
+        #print(analyse_multi_vol(b)) #générer une ereuur "list index out of range"
+        #graphique_multi_vol(b)
+
 
     def passer(self):
         """Pour gérer les réponses non-valides"""
@@ -253,29 +292,10 @@ class Vrac():
         print(transformation(nombreatester))
 
 
-    def testertransformationenchaine():
-        """ fait la totalité des calculs pour un nombre rentré au clavier.
-        Pour ce nombre, fait l'analyse et print, trace le graphique de vol"""
-        nombreatester=demandenombre()
-        a=(transformation_en_chaine(nombreatester))
-        print(a)
-        print(analyse_un_vol(a))
-        graphique_un_vol(a)
+
         
 
-    def testerchaineenserie():
-        """ fait la totalité des calculs pour une série de nombre consécutif dont les bornes sont rentrées au clavier.
-        Pour ces nombres, fait l'analyse et print, trace le graphique de vol
-        Todo : génére des erreurs
-        """
-        print("entrer deux nombre entier positif croissant")
-        nombreatester1=demandenombre()
-        nombreatester2=demandenombre()
-        #b=chaine_en_serie(15,17)
-        b=chaine_en_serie(nombreatester1,nombreatester2)
-        #print(b)
-        #print(analyse_multi_vol(b)) #générer une ereuur "list index out of range"
-        graphique_multi_vol(b)
+    
 
     ######
     # Visuel
@@ -285,21 +305,7 @@ class Vrac():
 
     
 
-    def demandenombre():
-        """demande un nombre entier pour faire son analyse.
-        Todo : Attention, si les float, str... ne sont pas accepté, les entiers négatif passent !
-        args : 
-            - aucune
-        returns : 
-            - nombre(integer)
-        """
-        nombre = input("Veuillez entrer un nombre entier positif \n")
-        while nombre != int or nombre < 0 :
-            try :
-                nombre = int(nombre)
-                return nombre
-            except :
-                nombre = input("Veuillez entrer un nombre entier positif \n")
+    
 
 ########################
 # déclancher le script
